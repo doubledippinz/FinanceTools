@@ -9,10 +9,10 @@ aallowance = 40000
 maxaareduction = 36000
 
 
-
 class Client:
 
-    def __init__(self, name, salary, bonus, intdiv, employeepercent, employerpercent, pensionlump, salaryexchange, deathbenefits):
+    def __init__(self, name, salary, bonus, intdiv, employeepercent, employerpercent, pensionlump, salaryexchange,
+                 deathbenefits):
         self.name = name
         self.salary = salary
         self.bonus = bonus
@@ -37,7 +37,8 @@ class Client:
                    int(input('Taxed lump sum death benefits: '))
                    )
 
-    def get_carryforward(self):
+    @staticmethod
+    def get_carryforward():
 
         def cap_carryforward(contribution):
             if contribution > aallowance:
@@ -51,18 +52,14 @@ class Client:
         print("Please enter your pension contributions for ", year3)
         year3contribution = int(input())
         year3remallowance = cap_carryforward(year3contribution)
-
         print("Please enter your pension contributions for ", year2)
         year2contribution = int(input())
         year2remallowance = cap_carryforward(year2contribution)
-
         print("Please enter your pension contributions for ", year1)
         year1contribution = int(input())
         year1remallowance = cap_carryforward(year1contribution)
-
         cf_allowance = year3remallowance + year2remallowance + year1remallowance
         return cf_allowance
-
 
     def get_threshold(self):
         threshinc = self.totalgross - self.pensionlump - self.employeecontribution + self.salaryexchange - self.deathbenefits
@@ -80,8 +77,6 @@ class Client:
                 taperexcess = maxaareduction
         annualallowance = aallowance - taperexcess
         return annualallowance
-
-
 
 
 c = Client.from_input()
