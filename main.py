@@ -1,3 +1,5 @@
+import os
+
 # import datetime
 # currentyear = datetime.date.today().year
 # year3 = (datetime.date.today().year - 3)
@@ -88,20 +90,21 @@ class Client:
             maxcontribution = combinedallowance
             return maxcontribution
 
+    def __str__(self):
+        line1 = f"{self.name} Maximum pension contribution you can make this tax year: {self.get_maximum_contribution()}"
+        line2 = f"{self.name} Maximum pension contribution your employer can make this year:  {self.get_carryforward() + self.get_remaining_aa()}"
+        line3 = f"{self.name} Remaining annual allowance:   {self.get_remaining_aa()}"
+        line4 = f"{self.name} Carryforward available:   {self.get_carryforward()}"
+        return os.linesep.join([line1, line2, line3, line4])
 
+# Main
+# Specify how many clients
 
-client1 = Client.from_input()
-print(client1.name, 'Maximum pension contribution you can make this tax year: ', client1.get_maximum_contribution())
-print(client1.name, 'Maximum pension contribution your employer can make this year: ', client1.get_carryforward() + client1.get_remaining_aa())
-print(client1.name, 'Remaining annual allowance: ', client1.get_remaining_aa())
-print(client1.name, 'Carryforward available: ', client1.get_carryforward())
+num_clients = int(input("How many people would you like to assess? "))
+client_list = [Client.from_input() for _ in range(num_clients)]
+for client in client_list:
+    print(client)
 
-client2 = Client.from_input()
-
-print(client2.name, 'Maximum pension contribution you can make this tax year: ', client2.get_maximum_contribution())
-print(client2.name, 'Maximum pension contribution your employer can make this year: ', client2.get_carryforward() + client1.get_remaining_aa())
-print(client2.name, 'Remaining annual allowance: ', client2.get_remaining_aa())
-print(client2.name, 'Carryforward available: ', client2.get_carryforward())
 
 
 
