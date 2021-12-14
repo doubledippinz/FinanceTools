@@ -1,10 +1,11 @@
 import os
 
-# import datetime
-# currentyear = datetime.date.today().year
-# year3 = (datetime.date.today().year - 3)
-# year2 = datetime.date.today().year - 2
-# year1 = datetime.date.today().year - 1
+import datetime
+currentyear = datetime.date.today().year
+year3 = (datetime.date.today().year - 3)
+year2 = datetime.date.today().year - 2
+year1 = datetime.date.today().year - 1
+
 aathreshold = 240000
 aallowance = 40000
 maxaareduction = 36000
@@ -39,9 +40,9 @@ class Client:
                    int(input('Lump sum contributions: ')),
                    int(input('Employment income given through salary exchange')),
                    int(input('Taxed lump sum death benefits: ')),
-                   int(input('Please enter your pension contributions for 2018: ')),
-                   int(input('Please enter your pension contributions for 2019: ')),
-                   int(input('Please enter your pension contributions for 2020: '))
+                   int(input(f'Please enter your pension contributions for {year3}: ')),
+                   int(input(f'Please enter your pension contributions for {year2}: ')),
+                   int(input(f'Please enter your pension contributions for {year1}: '))
                    )
 
     def get_carryforward(self):
